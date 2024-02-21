@@ -1,5 +1,3 @@
-D'accord, voici un exemple de README basé sur la description de votre projet de scraper de produits Amazon. Vous pouvez ajuster le contenu selon les spécificités de votre projet, les dépendances supplémentaires, et toute autre information que vous jugez importante.
-
 ```markdown
 # Scraper de Produits Amazon
 

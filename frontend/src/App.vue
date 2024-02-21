@@ -15,13 +15,13 @@
                     <div class="">
                       <div class="Polaris-Labelled__LabelWrapper">
                         <div class="Polaris-Label">
-                          <label id=":R2q6:Label" for=":R2q6:" class="Polaris-Label__Text">URL de la page recherchée</label>
+                          <label id=":R2q6:Label" for=":R2q6:" class="Polaris-Label__Text">Produit recherché</label>
                         </div>
                       </div>
                       <div class="Polaris-Connected">
                         <div class="Polaris-Connected__Item Polaris-Connected__Item--primary">
                           <div class="Polaris-TextField">
-                            <input  v-model="url" placeholder="Entrez l'URL à scraper"  id=":R2q6:" autocomplete="off" class="Polaris-TextField__Input" type="text" aria-labelledby=":R2q6:Label" aria-invalid="false" data-1p-ignore="true" data-lpignore="true" data-form-type="other" value="">
+                            <input   v-model="searchTerm" placeholder="Entrez votre recherche Amazon"  id=":R2q6:" autocomplete="off" class="Polaris-TextField__Input" type="text" aria-labelledby=":R2q6:Label" aria-invalid="false" data-1p-ignore="true" data-lpignore="true" data-form-type="other" value="">
                             <div class="Polaris-TextField__Backdrop">
                             </div>
                           </div>
@@ -31,7 +31,7 @@
                   </div>
                   <div v-if="!isLoading" class="Polaris-FormLayout__Item Polaris-FormLayout--grouped">
                     <div class="">
-                      <button @click="submitUrl" class="Polaris-Button Polaris-Button--pressable Polaris-Button--variantPrimary Polaris-Button--sizeMedium Polaris-Button--textAlignCenter" type="button">
+                      <button @click="submitSearch" class="Polaris-Button Polaris-Button--pressable Polaris-Button--variantPrimary Polaris-Button--sizeMedium Polaris-Button--textAlignCenter" type="button">
                         <span class="">Générer le CSV</span>
                       </button>
                     </div>
@@ -70,7 +70,7 @@
 <script setup>
 import { ref } from 'vue';
 
-const url = ref('');
+const searchTerm = ref('');
 const isLoading = ref(false);
 
 const genererNomFichier = (url) => {
@@ -83,40 +83,41 @@ const genererNomFichier = (url) => {
   return `amazon-${nomPropre}.csv`;
 };
 
-const submitUrl = async () => {
+
+const submitSearch = async () => {
   isLoading.value = true;
+  const baseUrl = 'https://www.amazon.fr/s?k=';
+  const searchUrl = `${baseUrl}${encodeURIComponent(searchTerm.value)}`; // Utilisez .value pour accéder à la valeur de la référence
+
   try {
-    const apiUrl = 'http://localhost:5000/generate-csv'; // Remplacez par l'URL de votre API Flask
-    const response = await fetch(apiUrl, {
+    const response = await fetch('http://localhost:5000/generate-csv', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ url: url.value }),
+      body: JSON.stringify({ url: searchUrl }),
     });
 
     if (!response.ok) {
-      throw new Error('La réponse du réseau n\'était pas ok');
+      throw new Error('Network response was not ok');
     }
 
-    const blob = await response.blob(); // Traitez le fichier CSV reçu
+    const blob = await response.blob();
     const downloadUrl = window.URL.createObjectURL(blob);
-
-    // Utilisez la fonction pour générer le nom du fichier basé sur l'URL soumise
-    const nomFichier = genererNomFichier(url.value);
-
-    // Créez un lien pour télécharger le fichier
     const a = document.createElement('a');
     a.href = downloadUrl;
-    a.download = nomFichier; // Utilisez le nom de fichier généré
+    a.download = `amazon-${searchTerm.value.replace(/\s+/g, '-')}.csv`; // Notez l'utilisation de .value ici
     document.body.appendChild(a);
-    a.click(); // Simulez un clic sur le lien pour déclencher le téléchargement
-    window.URL.revokeObjectURL(downloadUrl); // Nettoyez l'URL du blob
+    a.click();
+    window.URL.revokeObjectURL(downloadUrl);
     isLoading.value = false;
-
   } catch (error) {
-    console.error('Il y a eu un problème avec votre fetch opération:', error);
+    console.error('There was a problem with your fetch operation:', error);
   }
 };
+
+
+
+
 
 </script>
