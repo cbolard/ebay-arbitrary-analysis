@@ -1,81 +1,75 @@
+# Amazon Product Scraper
 
-# Scraper de Produits Amazon
+This project allows scraping product information from Amazon search results. Users copy and paste the Amazon search URL into the web interface, and the service generates a CSV file containing information such as product name, rating, price, number of sales, and the product link.
 
-Ce projet permet de scraper des informations de produits à partir de recherches effectuées sur Amazon. L'utilisateur copie et colle l'URL de la recherche Amazon dans l'interface web, et le service génère un fichier CSV contenant des informations telles que le nom du produit, la note, le prix, le nombre de ventes, et le lien vers le produit.
+## Quick Start
 
-## Démarrage rapide
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-Ces instructions vous permettront d'obtenir une copie du projet en cours d'exécution sur votre machine locale à des fins de développement et de test.
+### Prerequisites
 
-### Prérequis
-
-- Python 3.8 ou supérieur
-- Node.js et npm
+- Python 3.8 or higher
+- Node.js and npm
 
 ### Installation
 
 #### Backend (Flask)
 
-1. Clonez le dépôt et naviguez dans le dossier du backend.
+1. Clone the repository and navigate to the backend folder.
    ```bash
-   git clone https://votreDepot.git](https://github.com/cbolard/amazon-scraping-tool.git)
+   git clone https://github.com/cbolard/amazon-scraping-tool.git
    cd scrapping-pages-tool/backend
    ```
 
-2. Créez un environnement virtuel et activez-le.
+2. Create a virtual environment and activate it.
    ```bash
    python -m venv venv
-   source venv/bin/activate  # Sur Windows, utilisez `venv\Scripts\activate`
+   source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
    ```
 
-3. Installez les dépendances.
+3. Install the dependencies.
    ```bash
    pip install -r requirements.txt
    ```
 
-4. Lancez le serveur Flask.
+4. Launch the Flask server.
    ```bash
    python app.py
    ```
 
-#### Frontend (Vue.js avec Vite)
+#### Frontend (Vue.js with Vite)
 
-1. Naviguez dans le dossier frontend.
+1. Navigate to the frontend folder.
    ```bash
    cd scrapping-pages-tool/frontend
    ```
 
-2. Installez les dépendances npm.
+2. Install npm dependencies.
    ```bash
    npm install
    ```
 
-3. Lancez le serveur de développement.
+3. Start the development server.
    ```bash
    npm run dev
    ```
 
-## Utilisation
+## Usage
 
-1. Ouvrez votre navigateur à l'adresse indiquée par Vite (généralement `http://localhost:3000`).
-2. Copiez et collez l'URL d'une recherche Amazon dans le champ prévu à cet effet sur la page web.
-3. Cliquez sur le bouton pour générer le fichier CSV. Le téléchargement devrait commencer automatiquement.
+1. Open your browser to the address provided by Vite (usually `http://localhost:3000`).
+2. Copy and paste the URL of an Amazon search into the designated field on the webpage.
+3. Click the button to generate the CSV file. The download should start automatically.
 
-## Construit avec
+## Built With
 
-* [Flask](http://flask.pocoo.org/) - Le framework web utilisé pour le backend.
-* [Vue.js](https://vuejs.org/) - Utilisé pour construire l'interface utilisateur.
-* [Vite](https://vitejs.dev/) - Outil de build et serveur de développement pour le frontend.
+* [Flask](http://flask.pocoo.org/) - The web framework used for the backend.
+* [Vue.js](https://vuejs.org/) - Used to build the user interface.
+* [Vite](https://vitejs.dev/) - Frontend build tool and development server.
 
-## Contribuer
+## Contributing
 
-Si vous souhaitez contribuer au projet, veuillez forker le dépôt et créer une pull request avec vos modifications. Toutes les contributions sont les bienvenues !
+If you would like to contribute to the project, please fork the repository and create a pull request with your changes. All contributions are welcome!
 
-## Licence
+## License
 
-Ce projet est sous licence MIT - voir le fichier LICENSE pour plus de détails.
-
-## Remerciements
-
-* Merci à tous ceux qui ont contribué au projet !
-* Inspiré par les nombreuses possibilités offertes par l'API d'Amazon.
+This project is licensed under the MIT License - see the LICENSE file for details.
