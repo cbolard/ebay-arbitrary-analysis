@@ -1,6 +1,6 @@
 # Amazon Product Scraper
 
-This project allows scraping product information from Amazon search results. Users copy and paste the Amazon search URL into the web interface, and the service generates a CSV file containing information such as product name, rating, price, number of sales, and the product link.
+This project allows scraping product information from Amazon search results. Users search for a product into the web interface, and the service generates a CSV file containing information such as product name, rating, price, number of sales, and the product link.
 
 ## Quick Start
 
